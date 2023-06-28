@@ -1,15 +1,16 @@
 import express from "express";
-import moviesRouter from "routes/movies.routes";
+import moviesRouter from "./routes/movies.routes";
 
 const app = express();
 app.use(express.json());
 app.use(moviesRouter);
-
 const port= 5000;
 
 app.listen(port, ()=>{
     console.log(`Server is up and running on port ${port}`)
 })
+
+
 
 /* 
 - Um CRUD para filmes que deve ter o nome, plataforma (Netflix, Prime), gênero e status.
