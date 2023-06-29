@@ -1,10 +1,17 @@
-import express from "express";
+import express,{json} from "express";
+import "express-async-errors";
+
 import moviesRouter from "./routes/movies.routes";
+import errorHandler from "./middlewares/error.middleware";
 
 const app = express();
-app.use(express.json());
+
+app.use(json());
 app.use(moviesRouter);
-const port= 5000;
+app.use(errorHandler);
+
+
+const port= 6000;
 
 app.listen(port, ()=>{
     console.log(`Server is up and running on port ${port}`)
