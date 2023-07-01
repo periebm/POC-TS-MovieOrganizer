@@ -25,14 +25,14 @@ export async function getQuantity(req: Request, res: Response){
 export async function createMovie(req: Request, res: Response){
     const {name, platform, genre, status} = req.body as CreateMovie;
 
-    const movie = createMovieService(name, platform, genre, status);  
+    const movie = await createMovieService(name, platform, genre, status);  
     res.sendStatus(200)
 }
 
 export async function deleteMovie(req: Request, res: Response) {
     const {id} = req.params;
 
-    deleteMovieService(Number(id))
+    await deleteMovieService(Number(id))
 
     res.sendStatus(200);
 }
@@ -40,6 +40,6 @@ export async function deleteMovie(req: Request, res: Response) {
 export async function editMovie(req: Request, res: Response){
     const {id} = req.params;
 
-    editMovieService(Number(id))
+    await editMovieService(Number(id))
     res.sendStatus(200);
 }

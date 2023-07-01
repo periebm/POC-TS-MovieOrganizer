@@ -52,7 +52,6 @@ export function getMoviesByIdDB(id:number) {
     )
 }
 
-
 export function createMovieDB(name:string, platform:string, status:boolean){
     return db.query(`INSERT INTO movies (name, platform, status)
     VALUES ($1, $2, $3)`,[name, platform, status])
@@ -61,6 +60,11 @@ export function createMovieDB(name:string, platform:string, status:boolean){
 export async function deleteMovieByIdDB(id:number){
     return await db.query(`DELETE FROM movies WHERE id=$1;`, [id])
 }
+
 export function deleteGenreByMovieIdDB(id:number){
     return db.query(`DELETE FROM genres WHERE movie_id=$1`,[id])
+}
+
+export function editStatusByIdDB(id:number){
+    return db.query(`UPDATE movies SET status = $1 WHERE id = $2`,[true, id]);
 }

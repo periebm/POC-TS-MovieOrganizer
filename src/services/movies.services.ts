@@ -1,5 +1,5 @@
 import { conflictError, notFoundError } from "../errors/errors";
-import { createMovieDB, deleteGenreByMovieIdDB, deleteMovieByIdDB, getMoviesByIdDB, getMoviesByNameDB } from "../repositories/movie.repository";
+import { createMovieDB, deleteGenreByMovieIdDB, deleteMovieByIdDB, editStatusByIdDB, getMoviesByIdDB, getMoviesByNameDB } from "../repositories/movie.repository";
 
 
 export async function createMovieService(name: string, platform: string, genre: string, status: boolean){
@@ -22,7 +22,5 @@ export async function editMovieService(id:number){
     const existingMovie = await getMoviesByIdDB(id); 
     if(!existingMovie.rowCount) throw notFoundError(id);
 
-    await deleteGenreByMovieIdDB(id);
-
-    return await deleteMovieByIdDB(id);
+    return await editStatusByIdDB(id);
 }
